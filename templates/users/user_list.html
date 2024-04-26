@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% block 'title' %}Lista de Usuários{% endblock 'title' %}
+{% block 'head' %}
+    <script src="{% static 'users/js/user_list.js' %}"></script>
+{% endblock 'head' %}
+{% block 'body' %}
+    <div class="container">
+        <h1>Lista de Usuários</h1>
+        <table id="userTable" class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dados da API serão inseridos aqui -->
+            </tbody>
+        </table>
+    </div>
+{% endblock 'body' %}

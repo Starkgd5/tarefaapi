@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block 'title' %}Criar Novo Usuários{% endblock 'title' %}
+{% block 'head' %}
+    <script src="{% static 'users/js/user_create.js' %}"></script>
+{% endblock 'head' %}
+{% block 'body' %}
+    <div class="container">
+        <h1>Criar Novo Usuário</h1>
+        <form action="{% url 'user_create' %}" method="POST" id="createUserForm">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="username" class="form-label">Nome de usúario:</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="is_staff" class="form-label">É funcionário?:</label>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="is_staff" name="is_staff">
+                    <label class="form-check-label" for="is_staff">Sim</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Criar Usuário</button>
+        </form>
+    </div>
+{% endblock 'body' %}

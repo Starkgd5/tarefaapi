@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const tableBody = document.querySelector('#userTable tbody');
 
   // Fazendo requisição à API
-  fetch('http://192.168.1.7/api/v1/users/')
+  fetch('http://127.0.0.1:8000/api/v1/users/')
     .then(response => response.json())
     .then(data => {
       // Preenchendo a tabela com os dados da API
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const row = `
           <tr>
             <th scope="row">${index + 1}</th>
-            <td>${user.name}</td>
+            <td>${user.username}</td>
             <td>${user.email}</td>
             <td>
               <button class="btn btn-primary">Editar</button>
@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     })
     .catch(error => {
-      console.error('Erro ao obter dados da API:', error);
+      // Exibindo uma mensagem de erro se ocorrer um erro na requisiçõa
+      alert('Erro ao obter dados da API: ' + error);
     });
 });
