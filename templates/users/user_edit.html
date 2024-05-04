@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Editar Usuário{% endblock %}
+
+{% block 'head' %}
+    <script src="{% static 'users/js/user_edit.js' %}"></script>
+{% endblock 'head' %}
+
+{% block 'body' %}
+    <div class="container">
+        <h1>Editar Usuário</h1>
+        <form id="editUserForm" method="PUT">
+            {% csrf_token %}
+            <input type="hidden" name="user_id" value="{{ user.id }}">
+            <div class="mb-3">
+                <label for="username" class="form-label">Nome de Usuário:</label>
+                <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="is_staff" class="form-label">É Funcionário?:</label>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="is_staff" name="is_staff" {% if user.is_staff %} checked {% endif %}>
+                    <label class="form-check-label" for="is_staff">Sim</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+        </form>
+    </div>
+{% endblock 'body' %}

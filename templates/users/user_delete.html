@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Detalhes do Usuário{% endblock %}
+{% block head %}
+    <!-- Se houver algum script adicional necessário -->
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <h1>Detalhes do Usuário</h1>
+        <p>Nome de Usuário: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>É Funcionário?: {% if user.is_staff %}Sim{% else %}Não{% endif %}</p>
+        <form id="deleteUserForm" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="user_id" value="{{ user.id }}">
+            <button type="button" id="deleteUserBtn" class="btn btn-danger">Excluir Usuário</button>
+        </form>
+    </div>
+{% endblock %}

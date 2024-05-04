@@ -10,11 +10,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const row = `
           <tr>
             <th scope="row">${index + 1}</th>
+            <td>${user.id}</td>
             <td>${user.username}</td>
             <td>${user.email}</td>
             <td>
-              <button class="btn btn-primary">Editar</button>
-              <button class="btn btn-danger">Excluir</button>
+              <a href="/user_edit/${user.id}" class="btn btn-primary">Editar</a>
+              <a href="/user_delete/${user.id}" class="btn btn-danger">Excluir</a>
             </td>
           </tr>
         `;

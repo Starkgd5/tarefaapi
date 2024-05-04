@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Criar Nova Tarefa{% endblock title %}
+{% block 'head' %}
+    <script src="{% static 'tasks/js/task_create.js' %}"></script>
+{% endblock 'head' %}
+{% block 'body' %}
+    <div class="container">
+        <h1>Criar Nova Tarefa</h1>
+        <form action="{% url 'task_create' %}" method="POST" id="createTaskForm">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="name" class="form-label">Nome da Tarefa:</label>
+                <input type="text" class="form-control" id="name" name="name" required maxlength="200">
+                <!-- Adicione uma mensagem de erro para o campo -->
+                <div class="invalid-feedback">Por favor, preencha este campo.</div>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Descrição:</label>
+                <input type="text" class="form-control" id="description" name="description" required maxlength="1000">
+                <!-- Adicione uma mensagem de erro para o campo -->
+                <div class="invalid-feedback">Por favor, preencha este campo.</div>
+            </div>
+            <div class="mb-3">
+                <label for="user_id" class="form-label">Usuário:</label>
+                <select name="user_id" class="form-select" id="user_id" required>
+                    {% for user in users %}
+                        <option value="{{user.id}}">{{user}}</option>
+                    {% endfor %}
+                </select>
+                <!-- Adicione uma mensagem de erro para o campo -->
+                <div class="invalid-feedback">Por favor, selecione um usuário.</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Criar Tarefa</button>
+        </form>
+    </div>
+{% endblock 'body' %}

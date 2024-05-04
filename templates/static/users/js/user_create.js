@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
         .catch(error => {
-            console.error('Erro ao criar usuário:', error);
             // Você pode exibir uma mensagem de erro para o usuário, se desejar
             alert('Erro ao criar usuário:' + error);
         });

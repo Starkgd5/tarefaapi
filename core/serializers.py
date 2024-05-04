@@ -1,18 +1,21 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
+
 from core.models import Task
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ['url', 'username', 'email', 'is_staff']
+        fields = ['id', 'url', 'username', 'email', 'is_staff']
 
 
-class TaskSerializer(serializers.HyperlinkedModelSerializer):
+class TaskSerializer(serializers.ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+
     class Meta:
         model = Task
-        fields = ['url', 'name', 'description', 'status', 'user']
+        fields = ['id', 'name', 'description', 'status', 'user']
 
 
 class CepSerializer(serializers.Serializer):
